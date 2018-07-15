@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="banner">
+    <swiper indicator-dots="{{banner.indicatorDots}}" autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" duration="{{banner.duration}}"
+      indicator-color="{{banner.indicatorColor}}" indicator-active-color="{{banner.indicatorActiveColor}}">
+      <block wx:for="{{banner.imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" width="100%" height="auto" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="category">
+    <view class="weui-grids">
+      <block wx:for="{{category.age.grids}}" wx:key="*this">
+        <navigator url="../goodList/goodList?type={{item.type}}" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" src="{{item.image}}" />
+          <view class="weui-grid__label">{{item.text}}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>

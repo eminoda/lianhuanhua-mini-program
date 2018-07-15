@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/goodList/goodList",
+    "pages/goodDetail/goodDetail",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#3F78D4",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "上海旧书摊",
+    "navigationStyle": "default",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": "50"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#3F78D4",
+    "backgroundColor": "#FFF",
+    "borderStyle": "black",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "./assets/images/tabs/home.png",
+      "selectedIconPath": "./assets/images/tabs/home2.png"
+    }, {
+      "pagePath": "pages/goodList/goodList",
+      "text": "更多",
+      "iconPath": "./assets/images/tabs/more.png",
+      "selectedIconPath": "./assets/images/tabs/more2.png"
+    }, {
+      "pagePath": "pages/search/search",
+      "text": "搜索",
+      "iconPath": "./assets/images/tabs/search.png",
+      "selectedIconPath": "./assets/images/tabs/search2.png"
+    }, {
+      "pagePath": "pages/user/user",
+      "text": "关于我",
+      "iconPath": "./assets/images/tabs/user.png",
+      "selectedIconPath": "./assets/images/tabs/user2.png"
+    }],
+    "position": "bottom"
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "connectSocket": 60000,
+    "uploadFile": 60000,
+    "downloadFile": 60000
+  }
+}

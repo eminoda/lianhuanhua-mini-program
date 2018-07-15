@@ -1,0 +1,35 @@
+<view class="weui-article">
+    <view class="weui-article__h1">上海旧书店</view>
+    <view class="weui-article__section">
+        <view class="weui-article__title">关于我</view>
+        <view class="weui-article__section">
+            <view class="weui-article__h3">初衷</view>
+            <view class="weui-article__p">诚信为本,广交天下连环画书友，传承历史文化。
+            </view>
+        </view>
+        <view class="weui-article__section">
+            <view class="weui-article__h3">联系方式</view>
+            <view class="weui-article__p">
+                微信：abcd62536283
+            </view>
+        </view>
+
+        <view class="weui-article__title">关于开发</view>
+        <view class="weui-article__section">
+            <view class="weui-article__h3">作者</view>
+            <view class="weui-article__p">
+                eminoda（史兴豪），前端开发工程师。
+            </view>
+        </view>
+        <view class="weui-article__section">
+            <view class="weui-article__h3">社交平台</view>
+            <view class="weui-article__p">
+                https://github.com/eminoda
+            </view>
+            <view class="weui-article__h3">联系方式</view>
+            <view class="weui-article__p">
+                邮箱：245978782@qq.com
+            </view>
+        </view>
+    </view>
+</view>
