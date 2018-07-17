@@ -30,11 +30,6 @@
       "iconPath": "./assets/images/tabs/home.png",
       "selectedIconPath": "./assets/images/tabs/home2.png"
     }, {
-      "pagePath": "pages/goodList/goodList",
-      "text": "更多",
-      "iconPath": "./assets/images/tabs/more.png",
-      "selectedIconPath": "./assets/images/tabs/more2.png"
-    }, {
       "pagePath": "pages/search/search",
       "text": "搜索",
       "iconPath": "./assets/images/tabs/search.png",
