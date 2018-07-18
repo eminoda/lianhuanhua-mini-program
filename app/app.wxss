@@ -1,1 +1,5 @@
 @import 'style/weui.wxss';
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}

@@ -1,9 +1,8 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
   <view class="banner">
-    <swiper indicator-dots="{{banner.indicatorDots}}" autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" duration="{{banner.duration}}"
-      indicator-color="{{banner.indicatorColor}}" indicator-active-color="{{banner.indicatorActiveColor}}">
-      <block wx:for="{{banner.imgUrls}}">
+    <swiper indicator-dots="{{banner.indicatorDots}}" autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" duration="{{banner.duration}}" indicator-color="{{banner.indicatorColor}}" indicator-active-color="{{banner.indicatorActiveColor}}">
+      <block wx:key="*this" wx:for="{{banner.imgUrls}}">
         <swiper-item>
           <image src="{{item}}" width="100%" height="auto" />
         </swiper-item>
@@ -20,4 +19,5 @@
       </block>
     </view>
   </view>
+  <button>123</button>
 </view>
