@@ -2,7 +2,7 @@ module.exports = {
     request: function (options) {
         return new Promise(function (resolve, reject) {
             wx.request({
-                url: 'http://127.0.0.1:3000' + options.url,
+                url: 'https://www.shidouhua.cn' + options.url,
                 data: options.data,
                 header: options.header,
                 method: options.method || 'GET',
