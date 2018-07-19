@@ -1,44 +1,43 @@
+const logger = require('../../services/loggerService');
 const utilService = require('../../services/utilService');
-const httpService = require('../../services/httpService');
+const bookService = require('../../services/bookService');
+const qs = require('../../libs/qs');
 Page({
     data: {
         books: [],
         page: 1,
-        age: ''
+        pageSize: 10,
+        loadmore: true,
+        age: '民国',
     },
+    onLoad: function (options) {
+        this.setData({
+            age: options.age || this.data.age
+        })
+        this.onReachBottom();
+    },
+    onShow: function () {},
+    // 上拉
+    onReachBottom: function () {
+        if (!this.data.loadmore) return;
+        bookService.getBookList.call(this, this.data).then(data => {
+            this.data.page = this.data.page + 1;
+            this.data.books = this.data.books.concat(data.books);
+            // 无数据
+            if (data.books.length == 0) {
+                this.setData({
+                    loadmore: false
+                })
+            }
+            this.setData({
+                books: this.data.books
+            })
+        }).catch(err => {})
+    },
+    // 查询书本详情
     toDetail: function (e) {
         utilService.toPage({
             url: '../goodDetail/goodDetail?id=' + e.currentTarget.dataset.id
         });
     },
-    onLoad: function (options) {
-        this.setData({
-            age: options.age
-        })
-        let self = this;
-        httpService.request({
-            url: '/book/list?age=' + options.age
-        }).then(data => {
-            self.setData({
-                books: data.books
-            })
-        }).catch(err => {
-
-        })
-    },
-    onShow: function () {},
-    onReachBottom: function () {
-        this.data.page = this.data.page + 1;
-        let self = this;
-        httpService.request({
-            url: '/book/list?age=' + self.data.age + '&page=' + self.data.page
-        }).then(data => {
-            self.data.books = self.data.books.concat(data.books);
-            self.setData({
-                books: self.data.books
-            })
-        }).catch(err => {
-
-        })
-    }
 })

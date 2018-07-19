@@ -23,6 +23,12 @@
             position: relative;
             .title {
                 font-size: 16px;
+                overflow: hidden;
+                height: 26px;
+                line-height: 16px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
             }
             .text {
                 color: #999;
