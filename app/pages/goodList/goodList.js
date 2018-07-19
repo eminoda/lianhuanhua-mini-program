@@ -1,7 +1,6 @@
 const logger = require('../../services/loggerService');
 const utilService = require('../../services/utilService');
 const bookService = require('../../services/bookService');
-const qs = require('../../libs/qs');
 Page({
     data: {
         books: [],

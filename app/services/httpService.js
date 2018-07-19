@@ -1,6 +1,6 @@
 module.exports = {
-    request: function (options) {
-        return new Promise(function (resolve, reject) {
+    request: function(options) {
+        return new Promise(function(resolve, reject) {
             wx.request({
                 url: 'https://www.shidouhua.cn' + options.url,
                 // url: 'http://127.0.0.1:3000' + options.url,
@@ -9,7 +9,7 @@ module.exports = {
                 method: options.method || 'GET',
                 dataType: options.dataType || 'json',
                 responseType: options.responseType,
-                success: function (resp) {
+                success: function(resp) {
                     let data = resp.data;
                     if (data.success) {
                         resolve(data);
@@ -17,7 +17,7 @@ module.exports = {
                         reject(data);
                     }
                 },
-                fail: function (resp) {
+                fail: function(resp) {
                     reject(resp.data);
                 },
                 complete: options.complete
