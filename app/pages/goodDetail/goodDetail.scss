@@ -1,11 +1,20 @@
+@import "../../style/common.scss";
 .goodDetail-wrap {
     padding: 10px;
-    .title {}
+    .title {
+        margin-top: 10px;
+    }
     .desc {
         margin-bottom: 10px;
     }
     .image-wrap {
         text-align: center;
         image {}
+    }
+    .share-button {
+        background-color: $blue;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
     }
 }

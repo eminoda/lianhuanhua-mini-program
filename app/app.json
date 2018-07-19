@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/user/user",
+    "pages/user/develop/develop",
+    "pages/user/webcat/webcat",
     "pages/search/search",
     "pages/goodList/goodList",
     "pages/goodDetail/goodDetail",
-    "pages/user/user",
     "pages/logs/logs"
   ],
   "window": {

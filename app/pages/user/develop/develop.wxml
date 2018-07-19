@@ -1,0 +1,23 @@
+ <view class="page__bd">
+    <view class="weui-form-preview">
+        <view class="weui-form-preview__hd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">开发者(前端开发工程师)</view>
+                <view class="weui-form-preview__value_in-hd">Eminoda</view>
+            </view>
+        </view>
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">个人主页</view>
+                <view class="weui-form-preview__value">http://eminoda.github.io</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">联系方式</view>
+                <view class="weui-form-preview__value">245978782@qq.com</view>
+            </view>
+        </view>
+    </view>
+    <view class="image-wrap">
+        <image src="https://www.shidouhua.cn/images/webcat/webcat-develop.png" />
+    </view>
+</view>

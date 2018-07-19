@@ -19,5 +19,17 @@ module.exports = {
         return qs.parse(data, {
             ignoreQueryPrefix: true
         })
+    },
+    showToast: (options) => {
+        wx.showToast({
+            title: typeof (options) == 'string' ? options : options.title || options.data || options.message,
+            icon: options.icon || 'none',
+            image: options.image,
+            duration: options.duration || 1500,
+            mask: options.mask,
+            success: options.success,
+            fail: options.fail,
+            complete: options.complete
+        })
     }
 }

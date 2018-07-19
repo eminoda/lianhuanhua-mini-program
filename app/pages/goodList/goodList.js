@@ -31,7 +31,9 @@ Page({
             this.setData({
                 books: this.data.books
             })
-        }).catch(err => {})
+        }).catch(err => {
+            utilService.showToast(err);
+        })
     },
     // 查询书本详情
     toDetail: function (e) {

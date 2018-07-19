@@ -1,7 +1,7 @@
 const httpService = require('./httpService');
 module.exports = {
     // 查询书籍列表
-    getBookList: function(data) {
+    getBookList: function (data) {
         return httpService.request({
             url: '/book/list',
             data: {
@@ -11,7 +11,7 @@ module.exports = {
             }
         })
     },
-    queryBookListByName: function(data) {
+    queryBookListByName: function (data) {
         return httpService.request({
             url: '/book/vagueList',
             data: {
@@ -19,6 +19,11 @@ module.exports = {
                 pageSize: data.pageSize,
                 name: data.name
             }
+        })
+    },
+    getBookDetailById: function (id) {
+        return httpService.request({
+            url: '/book/detail/' + id
         })
     }
 }
