@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/user/user",
     "pages/user/develop/develop",

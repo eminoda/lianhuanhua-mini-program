@@ -1,0 +1,10 @@
+
+
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+
+
+<view>
+    <image src="{{userInfo.avatarUrl}}" />
+
+    <view>{{isAuth}}</view>
+</view>
