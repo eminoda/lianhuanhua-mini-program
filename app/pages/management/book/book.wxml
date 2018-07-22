@@ -1,0 +1,37 @@
+<view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+    </view>
+    <view class="weui-search-bar__cancel-btn" wx:if="{{inputVal}}" bindtap="search">搜索</view>
+</view>
+<view class="weui-cells searchbar-result" wx:if="{{books.length > 0}}">
+    <view wx:for="{{books}}" wx:key="item.id" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+            <view class="book-item">
+                <image src="{{item.isSelled? '../../../assets/images/icons/saled.png': '../../../assets/images/icons/sale.png'}}"></image>
+                {{item.name}}
+                <!-- 上架 -->
+                <button data-book="{{item}}" bind:tap="deleteBook" class="fr mini-btn {{item.isSelled?'btn-disabled':'btn-red'}}" size="mini">
+                    下架
+                </button>
+                <!-- 下架 -->
+                <button data-book="{{item}}" bind:tap="recoverBook" class="fr mini-btn {{item.isSelled?'btn-blue':'btn-disabled'}}" size="mini">
+                    恢复上架
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{!loadmore}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" hidden="{{loadmore}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+</view>

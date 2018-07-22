@@ -1,3 +1,5 @@
+const logger = require('../../services/loggerService');
+const utilService = require('../../services/utilService');
 Page({
     data: {
         isAuth: false,
@@ -11,25 +13,39 @@ Page({
             province: "Shanghai"
         }
     },
+    // 每次加载用户信息
     onLoad: function () {
+        let self = this;
         // 查看是否授权
-        wx.getSetting({
-            success: function (res) {
-                if (res.authSetting['scope.userInfo']) {
-                    this.data.isAuth = true;
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                    // wx.getUserInfo({
-                    //     success: function (res) {
-                    //         console.log(res.userInfo)
-                    //     }
-                    // })
-                }
+        utilService.getSetting.call(this).then(data => {
+            // 已授权
+            if (data && data.authSetting && data.authSetting['scope.userInfo']) {
+                this.setData({
+                    isAuth: true,
+                    userInfo: utilService.getStorage('userInfo')
+                });
+                this.toIndex();
             }
+        }).catch(err => {
+            utilService.showToast(err);
         })
     },
-    // 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致
+    //获取用户信息，并存入本地缓存
     bindGetUserInfo: function (e) {
-
-        console.log(e.detail.userInfo)
+        let self = this;
+        // 用户授权
+        if (e.detail.userInfo) {
+            this.setData({
+                isAuth: true,
+                userInfo: e.detail.userInfo
+            });
+            utilService.saveStorage('userInfo', this.data.userInfo);
+        } else {}
+        this.toIndex();
+    },
+    toIndex: function () {
+        utilService.toPage({
+            url: '/pages/index/index'
+        }, true);
     }
 })

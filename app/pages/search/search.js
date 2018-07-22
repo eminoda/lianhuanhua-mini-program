@@ -8,7 +8,7 @@ Page({
         books: [],
         loadmore: true,
         page: 1,
-        pageSize: 10
+        pageSize: 20
     },
     // 监听输入
     inputTyping: function (e) {
@@ -20,13 +20,15 @@ Page({
     // 清空输入
     clearInput: function () {
         this.setData({
-            inputVal: ""
+            inputVal: "",
+            loadmore: true
         });
     },
     search: function () {
         this.setData({
             books: [],
-            page: 1
+            page: 1,
+            loadmore: true
         });
         this.onReachBottom();
     },
@@ -47,7 +49,8 @@ Page({
         bookService.queryBookListByName.call(this, {
             name: this.data.inputVal,
             page: this.data.page,
-            pageSize: this.data.pageSize
+            pageSize: this.data.pageSize,
+            isSelled: 0
         }).then(data => {
             if (data.books && data.books.length == 0) {
                 utilService.showToast('无查询数据，请更换查询关键词');
@@ -58,14 +61,14 @@ Page({
                     books: this.data.books
                 })
                 // 无数据
-                if (data.books.length == 0) {
+                if (data.books.length == 0 || this.data.books.length < this.data.page * this.data.pageSize) {
                     this.setData({
                         loadmore: false
                     })
                 }
             }
         }).catch(err => {
-            logger.info(err);
+            utilService.showToast(err);
         })
     },
 });

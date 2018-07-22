@@ -17,6 +17,17 @@ module.exports = {
             data: {
                 page: data.page,
                 pageSize: data.pageSize,
+                name: data.name,
+                isSelled: data.isSelled
+            }
+        })
+    },
+    queryAllBookListByName: function (data) {
+        return httpService.request({
+            url: '/book/allListByName',
+            data: {
+                page: data.page,
+                pageSize: data.pageSize,
                 name: data.name
             }
         })
@@ -24,6 +35,24 @@ module.exports = {
     getBookDetailById: function (id) {
         return httpService.request({
             url: '/book/detail/' + id
+        })
+    },
+    deleteBookById: function (id) {
+        return httpService.request({
+            method: 'POST',
+            url: '/book/delete',
+            data: {
+                id: id
+            }
+        })
+    },
+    recoverBookById: function (id) {
+        return httpService.request({
+            method: 'POST',
+            url: '/book/recover',
+            data: {
+                id: id
+            }
         })
     }
 }

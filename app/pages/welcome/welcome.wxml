@@ -1,10 +1,8 @@
-
-
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-
-
-<view>
-    <image src="{{userInfo.avatarUrl}}" />
-
-    <view>{{isAuth}}</view>
+<view class="header-wrap">
+    <image class="header-image" src="{{userInfo.avatarUrl}}" />
+    <view class="user-name">{{userInfo.nickName}}</view>
+    <button wx:if="{{!isAuth}}" open-type="getUserInfo" type="primary" class="weui-btn" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+    </button>
+    <button wx:if="{{!isAuth}}" class="weui-btn welcome-btn" bind:tap="toIndex">以后再说，先去看看</button>
 </view>

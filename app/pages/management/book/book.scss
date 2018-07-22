@@ -1,0 +1,26 @@
+@import "../../../style/common.scss";
+.book-item {
+    image {
+        float: left;
+        width: 24px;
+        height: 24px;
+        padding-right: 5px;
+    }
+    .btn-blue,
+    .btn-red,
+    .btn-disabled {
+        margin-right: 10px;
+    }
+    .btn-blue {
+        background-color: $blue;
+        color: #fff;
+    }
+    .btn-disabled {
+        background-color: $grey;
+        color: #fff;
+    }
+    .btn-red {
+        background-color: $red;
+        color: #fff;
+    }
+}

@@ -5,7 +5,9 @@ module.exports = {
                 // url: 'https://www.shidouhua.cn' + options.url,
                 url: 'http://127.0.0.1:3000' + options.url,
                 data: options.data,
-                header: options.header,
+                header: options.header || {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
                 method: options.method || 'GET',
                 dataType: options.dataType || 'json',
                 responseType: options.responseType,

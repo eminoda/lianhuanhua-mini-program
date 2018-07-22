@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/management/upload/upload",
+    "pages/user/user",
     "pages/welcome/welcome",
     "pages/index/index",
-    "pages/user/user",
+    "pages/management/book/book",
     "pages/user/develop/develop",
     "pages/user/webcat/webcat",
     "pages/search/search",
@@ -19,7 +21,7 @@
     "backgroundTextStyle": "dark",
     "backgroundColorTop": "#ffffff",
     "backgroundColorBottom": "#ffffff",
-    "enablePullDownRefresh": false,
+    "enablePullDownRefresh": true,
     "onReachBottomDistance": "50"
   },
   "tabBar": {

@@ -3,8 +3,31 @@ const utilService = require('../../services/utilService');
 const bookService = require('../../services/bookService');
 const httpService = require('../../services/httpService');
 Page({
-    data: {},
-    onLoad: function () {},
+    data: {
+        isAuth: false,
+        userInfo: {
+            avatarUrl: '../../assets/images/icons/webcat-logo.png',
+            city: '',
+            country: '',
+            gender: 1,
+            language: "zh_CN",
+            nickName: "访客",
+            province: "Shanghai"
+        }
+    },
+    onLoad: function () {
+        utilService.getSetting.call(this).then(data => {
+            if (!data.authSetting['scope.userInfo']) {
+                utilService.toPage({
+                    url: '/pages/welcome/welcome'
+                });
+                let userInfo = utilService.getStorage('userInfo');
+                this.setData({
+                    userInfo: userInfo
+                })
+            }
+        })
+    },
     about: () => {
         wx.showModal({
             title: '关于旧书摊',
