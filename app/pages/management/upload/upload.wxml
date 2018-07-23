@@ -1,4 +1,10 @@
-<camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
-<button type="primary" bindtap="takePhoto">拍照</button>
-<view>预览</view>
-<image mode="widthFix" src="{{src}}"></image>
+
+<view class="upload-title">上传图片（最多上传 9 张）</view>
+<view class="upload-wrap" wx:for="{{imagePaths}}" wx:for-index="index" wx:key="*this" data-index="{{index}}" bind:tap="preViewImages">
+    <image class="upload-image" src="{{item}}" mode="aspectFit" ></image>    
+</view>
+<view class="upload-wrap" bind:tap="useCamera">
+    <image class="upload-pre-image" src="../../../assets/images/icons/upload.png"></image>
+    <view class="grey-deep">点击开始 拍照/选图</view>
+</view>
+<button class="weui-btn blue-btn upload-btn" bind:tap="uploadFiles">上传</button>

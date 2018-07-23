@@ -1,4 +1,26 @@
 module.exports = {
+    upload: function (options) {
+        return new Promise(function (resolve, reject) {
+            wx.uploadFile({
+                url: 'http://127.0.0.1:3000' + options.url,
+                filePath: options.filePath,
+                name: options.name,
+                formData: options.formData,
+                success: function (resp) {
+                    let data = JSON.parse(resp.data);
+                    if (data.success) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                },
+                fail: function (resp) {
+                    let data = JSON.parse(resp.data || resp.errMsg);
+                    reject(data);
+                }
+            })
+        })
+    },
     request: function (options) {
         return new Promise(function (resolve, reject) {
             wx.request({

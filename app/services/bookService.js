@@ -32,6 +32,16 @@ module.exports = {
             }
         })
     },
+    addBook: function (book) {
+        return httpService.request({
+            url: '/book/add',
+            method: 'POST',
+            data: {
+                name: book.name,
+                desc: book.desc
+            }
+        })
+    },
     getBookDetailById: function (id) {
         return httpService.request({
             url: '/book/detail/' + id
@@ -54,5 +64,23 @@ module.exports = {
                 id: id
             }
         })
+    },
+    uploadFile: function (id, filePath) {
+        return httpService.upload({
+            method: 'POST',
+            filePath: filePath,
+            url: '/book/upload',
+            formData: {
+                id: id
+            },
+            name: 'pic'
+        })
+    },
+    uploadFiles: function (id, filePaths) {
+        let uploadArr = [];
+        for (let i = 0; i < filePaths.length; i++) {
+            uploadArr.push(this.uploadFile(id, filePaths[i]));
+        }
+        return Promise.all(uploadArr);
     }
 }

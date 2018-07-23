@@ -1,16 +1,43 @@
+const logger = require('../../../services/loggerService');
+const utilService = require('../../../services/utilService');
+const bookService = require('../../../services/bookService');
 Page({
-    takePhoto() {
-        const ctx = wx.createCameraContext()
-        ctx.takePhoto({
-            quality: 'high',
-            success: (res) => {
-                this.setData({
-                    src: res.tempImagePath
-                })
-            }
+    data: {
+        imagePaths: [],
+        name: '',
+        desc: '',
+        id: ''
+    },
+    onLoad: function (options) {
+        this.setData({
+            id: '801dab00-8e61-11e8-9677-4533dac2aa6c' //options.id
         })
     },
-    error(e) {
-        console.log(e.detail)
+    useCamera: function () {
+        utilService.chooseImage.call(this).then(data => {
+            this.setData({
+                imagePaths: this.data.imagePaths.concat(data)
+            })
+        }).catch(err => {
+            utilService.showToast(err);
+        })
+    },
+    preViewImages: function (e) {
+        let index = e.currentTarget.dataset.index;
+        wx.previewImage({
+            current: index, // 当前显示图片的http链接
+            urls: this.data.imagePaths // 需要预览的图片http链接列表
+        })
+    },
+    uploadFiles: function () {
+        if (this.data.imagePaths.length == 0) {
+            utilService.showToast('请上传图片');
+        } else {
+            bookService.uploadFiles(this.data.id, this.data.imagePaths).then(data => {
+                utilService.showToast('上传成功');
+            }).catch(err => {
+                utilService.showToast(err);
+            })
+        }
     }
 })

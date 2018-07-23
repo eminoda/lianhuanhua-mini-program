@@ -1,0 +1,18 @@
+<view class="upload-title">标题</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入标题" value="{{name}}" bindinput="inputName"/>
+        </view>
+    </view>
+</view>
+<view class="upload-title">简介说明</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入简介说明" style="height: 3.3em" value="{{desc}}" bindinput="inputDesc"/>
+            <view class="weui-textarea-counter">0/200</view>
+        </view>
+    </view>
+</view>
+<button class="weui-btn blue-btn upload-btn" bind:tap="addBook">添加信息</button>

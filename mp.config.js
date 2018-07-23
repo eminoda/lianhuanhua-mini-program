@@ -3,7 +3,7 @@ module.exports = {
         "sass": {
             moduleSrcDirtory: ['app/pages/**/*.scss'],
             moduleOutDirtory: 'app/pages',
-            watchDirtory: ['app/scss/**/*.scss', 'app/scss/*.scss']
+            watchDirtory: ['app/style/*.scss', 'app/scss/**/*.scss', 'app/scss/*.scss']
         }
     },
     "sass": {

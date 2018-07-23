@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/management/upload/upload",
+    "pages/management/upload/bookInfo",
     "pages/user/user",
     "pages/welcome/welcome",
     "pages/index/index",
@@ -21,7 +22,7 @@
     "backgroundTextStyle": "dark",
     "backgroundColorTop": "#ffffff",
     "backgroundColorBottom": "#ffffff",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "onReachBottomDistance": "50"
   },
   "tabBar": {
