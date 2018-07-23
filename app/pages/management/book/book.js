@@ -4,7 +4,7 @@ const bookService = require('../../../services/bookService');
 Page({
     data: {
         inputShowed: false,
-        inputVal: "战",
+        inputVal: "",
         books: [],
         loadmore: true,
         page: 1,

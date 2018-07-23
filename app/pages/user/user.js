@@ -5,6 +5,7 @@ const httpService = require('../../services/httpService');
 Page({
     data: {
         isAuth: false,
+        isAdmain: false,
         userInfo: {
             avatarUrl: '../../assets/images/icons/webcat-logo.png',
             city: '',
@@ -17,13 +18,14 @@ Page({
     },
     onLoad: function () {
         utilService.getSetting.call(this).then(data => {
-            if (!data.authSetting['scope.userInfo']) {
-                utilService.toPage({
-                    url: '/pages/welcome/welcome'
-                });
+            if (data.authSetting['scope.userInfo']) {
+                // utilService.toPage({
+                //     url: '/pages/welcome/welcome'
+                // });
                 let userInfo = utilService.getStorage('userInfo');
                 this.setData({
-                    userInfo: userInfo
+                    userInfo: userInfo,
+                    isAuth: true
                 })
             }
         })

@@ -10,7 +10,7 @@ Page({
     },
     onLoad: function (options) {
         this.setData({
-            id: '801dab00-8e61-11e8-9677-4533dac2aa6c' //options.id
+            id: options.id
         })
     },
     useCamera: function () {
@@ -35,6 +35,9 @@ Page({
         } else {
             bookService.uploadFiles(this.data.id, this.data.imagePaths).then(data => {
                 utilService.showToast('上传成功');
+                utilService.toPage({
+                    url: '/pages/user/user'
+                });
             }).catch(err => {
                 utilService.showToast(err);
             })

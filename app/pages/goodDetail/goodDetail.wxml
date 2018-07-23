@@ -2,7 +2,7 @@
     <button class="share-button" open-type="share">点击分享：{{book.name}}</button>
     <view class="title weui-media-box__title">书名：{{book.name}}</view>
     <view class="desc weui-media-box__desc">简介：{{book.desc}}</view>
-    <view class="image-wrap" wx:for="{{book.detailImageUrls}}" wx:key="*this">
+    <view class="image-wrap" wx:for="{{book.detailImageUrls}}" wx:key="*this" wx:for-index="index" data-urls="{{book.detailImageUrls}}" data-index="{{index}}" bind:tap="preViewImages">
         <image src="{{item}}"></image>
     </view>
     <!-- <navigator url="../index/index" open-type="switchTab">

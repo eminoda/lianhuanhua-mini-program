@@ -23,5 +23,12 @@ Page({
             path: '/pages/goodDetail/goodDetail?id=' + this.data.book.id,
             imageUrl: this.data.book.imageUrl
         }
+    },
+    preViewImages: function (e) {
+        let index = e.currentTarget.dataset.index;
+        wx.previewImage({
+            current: index, // 当前显示图片的http链接
+            urls: e.currentTarget.dataset.urls // 需要预览的图片http链接列表
+        })
     }
 })

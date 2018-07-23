@@ -35,12 +35,12 @@
             </view>
         </view>
     </view>
-    <view class="weui-panel">
+    <view class="weui-panel" hidden="{{!isAdmain}}">
         <view class="weui-panel__hd">管理</view>
         <view class="weui-panel__bd">
             <view class="weui-media-box weui-media-box_small-appmsg">
                 <view class="weui-cells weui-cells_in-small-appmsg">
-                    <navigator url="/pages/management/upload/upload" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <navigator url="/pages/management/upload/bookInfo" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                         <view class="weui-cell__hd">
                             <image src="../../assets/images/icons/camera.png" />
                         </view>
