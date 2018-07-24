@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/welcome/welcome",
     "pages/index/index",
     "pages/management/upload/bookInfo",
     "pages/management/upload/upload",
-    "pages/user/user",
     "pages/management/book/book",
     "pages/user/develop/develop",
     "pages/user/webcat/webcat",

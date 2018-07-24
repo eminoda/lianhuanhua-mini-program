@@ -7,4 +7,4 @@
     <image class="upload-pre-image" src="../../../assets/images/icons/upload.png"></image>
     <view class="grey-deep">点击开始 拍照/选图</view>
 </view>
-<button class="weui-btn blue-btn upload-btn" bind:tap="uploadFiles">上传</button>
+<button class="weui-btn blue-btn upload-btn" bind:tap="uploadFiles">上传（上传后，请稍等）</button>

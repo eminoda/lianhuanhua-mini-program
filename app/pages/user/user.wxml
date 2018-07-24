@@ -81,3 +81,5 @@
         </view>
     </view>
 </view>
+
+<button wx:if="{{!isAuth}}" open-type="getUserInfo" type="primary" class="weui-btn blue-btn upload-btn" bindgetuserinfo="bindGetUserInfo">点击授权</button>

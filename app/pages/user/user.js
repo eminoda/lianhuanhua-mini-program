@@ -5,7 +5,7 @@ const httpService = require('../../services/httpService');
 Page({
     data: {
         isAuth: false,
-        isAdmain: false,
+        isAdmin: false,
         userInfo: {
             avatarUrl: '../../assets/images/icons/webcat-logo.png',
             city: '',
@@ -19,16 +19,27 @@ Page({
     onLoad: function () {
         utilService.getSetting.call(this).then(data => {
             if (data.authSetting['scope.userInfo']) {
-                // utilService.toPage({
-                //     url: '/pages/welcome/welcome'
-                // });
                 let userInfo = utilService.getStorage('userInfo');
                 this.setData({
                     userInfo: userInfo,
                     isAuth: true
                 })
+
             }
         })
+    },
+    //获取用户信息，并存入本地缓存
+    bindGetUserInfo: function (e) {
+        let self = this;
+        // 用户授权
+        if (e.detail.userInfo) {
+            this.setData({
+                isAuth: true,
+                userInfo: e.detail.userInfo
+            });
+            utilService.saveStorage('userInfo', this.data.userInfo);
+        } else {}
+        this.toIndex();
     },
     about: () => {
         wx.showModal({

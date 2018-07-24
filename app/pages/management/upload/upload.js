@@ -32,12 +32,19 @@ Page({
     uploadFiles: function () {
         if (this.data.imagePaths.length == 0) {
             utilService.showToast('请上传图片');
+        } else if (this.data.imagePaths.length > 9) {
+            utilService.showToast('最多支持9张图片');
         } else {
             bookService.uploadFiles(this.data.id, this.data.imagePaths).then(data => {
-                utilService.showToast('上传成功');
-                utilService.toPage({
-                    url: '/pages/user/user'
-                });
+                utilService.showModal({
+                    content: '上传成功',
+                    showCancel: false,
+                    confirmText: '去用户页'
+                }).then(data => {
+                    utilService.toPage({
+                        url: '/pages/user/user'
+                    }, true);
+                })
             }).catch(err => {
                 utilService.showToast(err);
             })

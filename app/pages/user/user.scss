@@ -1,3 +1,4 @@
+@import "../../style/common.scss";
 .user-wrap {
     background: #f5f5f5;
     image {
@@ -5,4 +6,10 @@
         height: 20px;
         margin-right: 5px;
     }
+}
+
+.upload-btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

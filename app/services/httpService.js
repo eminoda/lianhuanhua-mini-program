@@ -18,6 +18,9 @@ module.exports = {
                 fail: function (resp) {
                     let data = JSON.parse(resp.data || resp.errMsg);
                     reject(data);
+                },
+                complete: function (resp) {
+                    reject(new Error(resp.errMsg));
                 }
             })
         })
@@ -52,7 +55,9 @@ module.exports = {
                 fail: function (resp) {
                     reject(resp.data);
                 },
-                complete: options.complete
+                complete: function (resp) {
+                    reject(new Error(resp.errMsg));
+                }
             })
         })
     }

@@ -78,5 +78,23 @@ module.exports = {
                 }
             })
         })
+    },
+    showModal: function (options) {
+        return new Promise((resolve, reject) => {
+            wx.showModal({
+                title: options.title || '标题',
+                content: options.content || '',
+                confirmText: options.confirmText || '确定',
+                cancelText: options.cancelText || '取消',
+                showCancel: options.showCancel,
+                success: function (res) {
+                    if (res.confirm) {
+                        resolve(res);
+                    } else {
+                        reject(res);
+                    }
+                }
+            });
+        })
     }
 }
