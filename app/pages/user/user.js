@@ -1,23 +1,25 @@
 const logger = require('../../services/loggerService');
 const utilService = require('../../services/utilService');
 const bookService = require('../../services/bookService');
-const httpService = require('../../services/httpService');
+const collectorService = require('../../services/collectorService');
 Page({
     data: {
         isAuth: false,
-        isAdmin: false,
         userInfo: {
             avatarUrl: '../../assets/images/icons/webcat-logo.png',
             city: '',
             country: '',
+            telephone: '',
             gender: 1,
             language: "zh_CN",
             nickName: "访客",
-            province: "Shanghai"
+            province: "Shanghai",
+            isAdmin: false
         }
     },
-    onLoad: function () {
+    onShow: function () {
         utilService.getSetting.call(this).then(data => {
+            // 已授权
             if (data.authSetting['scope.userInfo']) {
                 let userInfo = utilService.getStorage('userInfo');
                 this.setData({
@@ -31,15 +33,30 @@ Page({
     //获取用户信息，并存入本地缓存
     bindGetUserInfo: function (e) {
         let self = this;
-        // 用户授权
-        if (e.detail.userInfo) {
+        let userInfo = e.detail.userInfo;
+        if (userInfo) {
             this.setData({
                 isAuth: true,
-                userInfo: e.detail.userInfo
+                userInfo: userInfo
             });
-            utilService.saveStorage('userInfo', this.data.userInfo);
-        } else {}
-        this.toIndex();
+            utilService.saveStorage('userInfo', userInfo);
+            collectorService.getCollectorByNickName.call(this, userInfo.nickName).then(data => {
+                let userInfo = data.data;
+                this.setData({
+                    userInfo: userInfo
+                })
+                utilService.saveStorage('userInfo', userInfo);
+                if (!userInfo) {
+                    collectorService.addWebcatUser.call(this, userInfo).then(data => {
+                        let userInfo = data.data;
+                        this.setData({
+                            userInfo: userInfo
+                        })
+                        utilService.saveStorage('userInfo', userInfo);
+                    }).catch(err => {})
+                }
+            }).catch(err => {})
+        }
     },
     about: () => {
         wx.showModal({

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/user/user",
     "pages/welcome/welcome",
+    "pages/user/user",
+    "pages/user/bindPhone/bindPhone",
     "pages/index/index",
     "pages/management/upload/bookInfo",
     "pages/management/upload/upload",

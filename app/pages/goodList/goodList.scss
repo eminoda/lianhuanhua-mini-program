@@ -1,4 +1,10 @@
 @import "../../style/common.scss";
+.money {
+    color: $red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .goodList-wrap {
     .item {
         font-size: 14px;

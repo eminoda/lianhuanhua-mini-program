@@ -1,5 +1,6 @@
 const logger = require('../../services/loggerService');
 const utilService = require('../../services/utilService');
+const collectorService = require('../../services/collectorService');
 Page({
     data: {
         isAuth: false,
@@ -7,6 +8,7 @@ Page({
             avatarUrl: '../../assets/images/icons/webcat-logo.png',
             city: '',
             country: '',
+            telephone: '',
             gender: 1,
             language: "zh_CN",
             nickName: "访客",
@@ -40,8 +42,34 @@ Page({
                 userInfo: e.detail.userInfo
             });
             utilService.saveStorage('userInfo', this.data.userInfo);
-        } else {}
-        this.toIndex();
+            // 查询是否有该微信用户
+            collectorService.getCollectorByNickName.call(this, this.data.userInfo.nickName).then(data => {
+                let userInfo = data.data;
+                utilService.saveStorage('userInfo', userInfo);
+                if (!userInfo) {
+                    collectorService.addWebcatUser.call(this, this.data.userInfo).then(data => {
+                        let userInfo = data.data;
+                        utilService.saveStorage('userInfo', userInfo);
+                        // 手机未绑定
+                        utilService.toPage({
+                            url: '/pages/user/bindPhone/bindPhone?id=' + userInfo.id
+                        });
+                    }).catch(err => {
+                        this.toIndex();
+                    })
+                } else if (userInfo && !userInfo.telephone) {
+                    utilService.toPage({
+                        url: '/pages/user/bindPhone/bindPhone?id=' + userInfo.id
+                    });
+                } else {
+                    this.toIndex();
+                }
+            }).catch(err => {
+                this.toIndex();
+            })
+        } else {
+            this.toIndex();
+        }
     },
     toIndex: function () {
         utilService.toPage({

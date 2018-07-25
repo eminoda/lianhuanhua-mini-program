@@ -1,0 +1,12 @@
+<view class="weui-cells__title">用户信息绑定</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">手机号</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" value="{{telephone}}" bindinput="inputTyping" placeholder="请输入手机号" />
+        </view>
+    </view>
+</view>
+<button class="weui-btn blue-btn bind-btn" bind:tap="bind">绑定</button>
