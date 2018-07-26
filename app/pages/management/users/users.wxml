@@ -1,0 +1,29 @@
+
+<view class="weui-cells searchbar-result" wx:if="{{collectors.length > 0}}">
+    <view wx:for="{{collectors}}" wx:key="item.id" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+            <view class="book-item">
+                <view>
+                    昵称：{{item.nickName}}    
+                </view>
+                <view>
+                    地区：{{item.province}}
+                </view>
+                <view>
+                    电话：{{item.telephone}}
+                    <button data-collector="{{item}}" bind:tap="updateAdmin" class="fr mini-btn {{item.isAdmin?'btn-disabled':'btn-red'}}" size="mini">
+                    授权
+                    </button>
+                </view>
+                
+            </view>
+        </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{!loadmore}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" hidden="{{loadmore}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+</view>

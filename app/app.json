@@ -7,6 +7,7 @@
     "pages/management/upload/bookInfo",
     "pages/management/upload/upload",
     "pages/management/book/book",
+    "pages/management/users/users",
     "pages/user/develop/develop",
     "pages/user/webcat/webcat",
     "pages/search/search",

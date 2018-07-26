@@ -35,5 +35,23 @@ module.exports = {
             url: '/collector/webcat/' + nickName,
             method: 'GET'
         })
-    }
+    },
+    getCollectorList: function (data) {
+        return httpService.request({
+            url: '/collector/list',
+            data: {
+                page: data.page,
+                pageSize: data.pageSize
+            }
+        })
+    },
+    updateAdminById: function (id, isAdmin) {
+        return httpService.request({
+            method: 'POST',
+            url: '/collector/auth/' + id,
+            data: {
+                isAdmin: isAdmin
+            }
+        })
+    },
 }
