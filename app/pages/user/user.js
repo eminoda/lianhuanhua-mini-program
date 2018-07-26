@@ -68,15 +68,12 @@ Page({
         }
     },
     about: () => {
-        wx.showModal({
+        utilService.showModal({
             title: '关于旧书摊',
-            content: '诚信为本,广交天下连环画书友，传承历史文化。',
+            content: '诚信为本，广交天下连环画书友，传承历史文化。',
             confirmText: "确定",
-            success: function (res) {
-                console.log(res);
-                if (res.confirm) {} else {}
-            }
-        });
+            showCancel: false
+        }).then(data => {})
     },
     conact: () => {
         wx.makePhoneCall({
