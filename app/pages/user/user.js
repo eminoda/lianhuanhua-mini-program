@@ -6,6 +6,7 @@ Page({
     data: {
         isAuth: false,
         userInfo: {
+            id: '',
             avatarUrl: '../../assets/images/icons/webcat-logo.png',
             city: '',
             country: '',
@@ -18,21 +19,29 @@ Page({
         }
     },
     onShow: function () {
+        // 查看授权状态
         utilService.getSetting.call(this).then(data => {
             // 已授权
             if (data.authSetting['scope.userInfo']) {
-                let userInfo = utilService.getStorage('userInfo');
                 this.setData({
-                    userInfo: userInfo,
                     isAuth: true
-                })
+                });
+                let userInfo = utilService.getStorage('userInfo');
+                // 是 收藏家
+                if (userInfo.id) {
+                    // 获取最新收藏家信息，是否绑定手机？
+                    collectorService.getCollectorById.call(this, userInfo.id).then(data => {
+                        this.setData({
+                            userInfo: data.data.collector
+                        });
+                    }).catch(err => {})
+                }
 
             }
         })
     },
     //获取用户信息，并存入本地缓存
     bindGetUserInfo: function (e) {
-        let self = this;
         let userInfo = e.detail.userInfo;
         if (userInfo) {
             this.setData({
@@ -41,19 +50,20 @@ Page({
             });
             utilService.saveStorage('userInfo', userInfo);
             collectorService.getCollectorByNickName.call(this, userInfo.nickName).then(data => {
-                let userInfo = data.data;
-                this.setData({
-                    userInfo: userInfo
-                })
-                utilService.saveStorage('userInfo', userInfo);
-                if (!userInfo) {
+                let collector = data.data.collector;
+                if (!collector) {
                     collectorService.addWebcatUser.call(this, userInfo).then(data => {
-                        let userInfo = data.data;
+                        let userInfo = data.data.collector;
                         this.setData({
                             userInfo: userInfo
                         })
                         utilService.saveStorage('userInfo', userInfo);
                     }).catch(err => {})
+                } else {
+                    this.setData({
+                        userInfo: collector
+                    })
+                    utilService.saveStorage('userInfo', collector);
                 }
             }).catch(err => {})
         }

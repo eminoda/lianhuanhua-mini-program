@@ -35,7 +35,7 @@
             </view>
         </view>
     </view>
-    <view class="weui-panel" hidden="{{!isAuth||!userInfo}}">
+    <view class="weui-panel" hidden="{{!isAuth||!userInfo||!userInfo.id}}">
         <view class="weui-panel__hd">个人设置</view>
         <view class="weui-panel__bd">
             <view class="weui-media-box weui-media-box_small-appmsg">
@@ -45,7 +45,7 @@
                             <image src="../../assets/images/icons/phone.png" />
                         </view>
                         <view class="weui-cell__bd weui-cell_primary">
-                            <view>绑定/修改手机</view>
+                            <view>绑定/修改手机  {{userInfo.telephone}}</view>
                         </view>
                         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
                     </navigator>
@@ -99,6 +99,6 @@
         </view>
     </view>
 </view>
-<button wx:if="{{!isAuth||!userInfo}}" open-type="getUserInfo" type="primary" class="weui-btn blue-btn upload-btn" bindgetuserinfo="bindGetUserInfo">
+<button wx:if="{{!isAuth||!userInfo||!userInfo.id}}" open-type="getUserInfo" type="primary" class="weui-btn blue-btn upload-btn" bindgetuserinfo="bindGetUserInfo">
     点击授权
 </button>

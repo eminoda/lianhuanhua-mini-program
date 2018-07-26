@@ -5,4 +5,5 @@
         授权登录
     </button>
     <button wx:if="{{!isAuth}}" class="weui-btn welcome-btn" bind:tap="toIndex">以后再说，先去看看</button>
+    <button wx:if="{{isAuth}}" class="weui-btn welcome-btn" bind:tap="toIndex">看看</button>
 </view>

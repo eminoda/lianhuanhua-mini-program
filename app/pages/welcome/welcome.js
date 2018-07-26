@@ -17,7 +17,6 @@ Page({
     },
     // 每次加载用户信息
     onLoad: function () {
-        let self = this;
         // 查看是否授权
         utilService.getSetting.call(this).then(data => {
             // 已授权
@@ -34,32 +33,32 @@ Page({
     },
     //获取用户信息，并存入本地缓存
     bindGetUserInfo: function (e) {
-        let self = this;
+        let userInfo = e.detail.userInfo;
         // 用户授权
-        if (e.detail.userInfo) {
+        if (userInfo) {
             this.setData({
                 isAuth: true,
-                userInfo: e.detail.userInfo
+                userInfo: userInfo
             });
-            utilService.saveStorage('userInfo', this.data.userInfo);
+            utilService.saveStorage('userInfo', userInfo);
             // 查询是否有该微信用户
-            collectorService.getCollectorByNickName.call(this, this.data.userInfo.nickName).then(data => {
-                let userInfo = data.data;
-                utilService.saveStorage('userInfo', userInfo);
-                if (!userInfo) {
-                    collectorService.addWebcatUser.call(this, this.data.userInfo).then(data => {
-                        let userInfo = data.data;
-                        utilService.saveStorage('userInfo', userInfo);
+            collectorService.getCollectorByNickName.call(this, userInfo.nickName).then(data => {
+                let collector = data.data.collector;
+                utilService.saveStorage('userInfo', collector);
+                if (!collector) {
+                    collectorService.addWebcatUser.call(this, userInfo).then(data => {
+                        let collector = data.data.collector;
+                        utilService.saveStorage('userInfo', collector);
                         // 手机未绑定
                         utilService.toPage({
-                            url: '/pages/user/bindPhone/bindPhone?id=' + userInfo.id
+                            url: '/pages/user/bindPhone/bindPhone?id=' + collector.id
                         });
                     }).catch(err => {
                         this.toIndex();
                     })
-                } else if (userInfo && !userInfo.telephone) {
+                } else if (collector && !collector.telephone) {
                     utilService.toPage({
-                        url: '/pages/user/bindPhone/bindPhone?id=' + userInfo.id
+                        url: '/pages/user/bindPhone/bindPhone?id=' + collector.id
                     });
                 } else {
                     this.toIndex();
