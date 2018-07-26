@@ -39,11 +39,11 @@ Page({
                 utilService.showModal({
                     content: '上传成功',
                     showCancel: false,
-                    confirmText: '去用户页'
+                    confirmText: '查看详情'
                 }).then(data => {
-                    utilService.toPage({
-                        url: '/pages/user/user'
-                    }, true);
+                    wx.navigateTo({
+                        url: '/pages/goodDetail/goodDetail?id=' + this.data.id
+                    })
                 })
             }).catch(err => {
                 utilService.showToast(err);
